@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-cute-bg: #53D8FB;
+  --color-terminal-dark: #160D33;
+  --color-neon-pink: #FFAAD9;
+  --color-neon-blue: #66C3FF;
+  --color-amethyst-text: #231651;
+  --font-mono: "Courier New", Courier, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Custom Neon Glow Utilities */
+@utility neon-glow-pink {
+  border: 1.5px solid var(--color-neon-pink);
+  box-shadow: 0 0 15px rgba(255, 170, 217, 0.4), inset 0 0 10px rgba(255, 170, 217, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility neon-glow-blue {
+  border: 1.5px solid var(--color-neon-blue);
+  box-shadow: 0 0 15px rgba(102, 195, 255, 0.4), inset 0 0 10px rgba(102, 195, 255, 0.1);
+}
+
+/* Faint circuit grid simulation */
+@utility circuit-bg {
+  background-image: radial-gradient(rgba(35, 22, 81, 0.08) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+/* Global body styling */
+@layer base {
+  body {
+    @apply bg-cute-bg text-terminal-dark font-mono antialiased circuit-bg min-h-screen selection:bg-neon-pink selection:text-terminal-dark;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
